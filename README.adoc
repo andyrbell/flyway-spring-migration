@@ -12,9 +12,18 @@ It is worth noting that the flyway-gradle-plugin was converted to java from groo
 
 == Running
 
+Optionally, use the included `docker-compose.yml` to spin up a mysql container. (Requires `docker` and `docker-compose`, see the https://docs.docker.com/engine/installation/[Installation Guide])
+
 [source]
 ----
 docker-compose up -d
+----
+Alternatively, update the database settings in `build.gradle` as appropriate to point to an existing database.
+
+Run the Flyway migration as follows:
+
+[source]
+----
 ./gradlew build flywayMigrate --stacktrace
 ----
 
