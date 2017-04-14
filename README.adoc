@@ -1,0 +1,37 @@
+= Flyway SpringJdbcMigration Problem
+
+This project is an attempt to replicate http://stackoverflow.com/questions/42941777/flyway-migrate-load-constraint-violation-with-spring[this issue] described on Stack Overflow.
+
+The problem occurs with Flyway 4.1.2.
+
+The spring-jdbc library needed to be added to the buildscript dependencies to get it working with 4.1.2.
+
+It does work for Flyway 4.0.3 without this explicit dependency. Not sure why.
+
+It is worth noting that the flyway-gradle-plugin was converted to java from groovy between these versions.
+
+== Running
+
+[source]
+----
+docker-compose up -d
+./gradlew build flywayMigrate --stacktrace
+----
+
+== Error
+
+To replicate the error, comment out the following line in build.gradle and re-run.
+
+[source]
+----
+classpath("org.springframework:spring-jdbc:${springVersion}")
+----
+
+On the first run, it will give the following error
+
+[source]
+----
+java.lang.NoClassDefFoundError: org/springframework/jdbc/core/JdbcTemplate
+----
+
+On all subsequent runs it will give the `loader constraint violation` described in the issue.
