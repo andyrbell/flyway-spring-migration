@@ -2,7 +2,7 @@ buildscript {
     ext {
         springBootVersion = '1.5.2.RELEASE'
         springVersion = '4.3.7.RELEASE'
-        flywayVersion = '4.0.3'
+        flywayVersion = '4.1.2'
     }
     repositories {
         mavenCentral()
@@ -10,7 +10,7 @@ buildscript {
     dependencies {
         classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
         classpath("org.flywaydb:flyway-gradle-plugin:${flywayVersion}")
-//        classpath("org.springframework:spring-jdbc:${springVersion}")
+        classpath("org.springframework:spring-jdbc:${springVersion}")
     }
 
 }
